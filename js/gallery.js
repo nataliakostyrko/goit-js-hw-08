@@ -66,7 +66,7 @@ const images = [
 const gallery = document.querySelector(".gallery");
 
 function createMarkup() {
-  const galleryItems = images
+  const items = images
     .map(({ preview, original, description }) => {
       return `<li class="gallery-item">
       <a class="gallery-link" href="${original}">
@@ -80,7 +80,8 @@ function createMarkup() {
     </li>`;
     })
     .join("");
-  gallery.insertAdjacentHTML("beforeend", galleryItems);
+  
+    gallery.insertAdjacentHTML("beforeend", items);
 
 }
 createMarkup();
@@ -93,7 +94,7 @@ gallery.addEventListener("click", function(event) {
     return;
   }
 
-  const modalInstance = basicLightbox.create(`
+  const instance = basicLightbox.create(`
     <div class="modal">
       <img src="${target.dataset.source}" 
       alt="${target.dataset.description}">
@@ -101,5 +102,5 @@ gallery.addEventListener("click", function(event) {
     </div>
   `);
 
-  modalInstance.show();
+  instance.show();
 });
